@@ -1,2 +1,3 @@
 export { HomePage } from "../pages/Home/HomePage"
-export {ProductList} from "../pages/Products/ProductList"
+export { ProductsList } from "./Products/ProductsList"
+export {ProductDetail} from "./ProductDetail"

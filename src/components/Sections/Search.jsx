@@ -1,30 +1,41 @@
-<div className="border-b border-slate-200 dark:border-b-0 flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-3">
-	<Link
-		to="/"
-		className="flex items-center"
-	>
-		<img
-			src="Logo"
-			className="mr-3 h-10"
-			alt="CodeBook Logo"
-		/>
-		<span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-			CodeBook
-		</span>
-	</Link>
-	<div className="flex items-center relative">
-		<span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-gear-wide-connected"></span>
-		<span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search"></span>
-		<Link
-			to="/cart"
-			className="text-gray-700 dark:text-white mr-5"
-		>
-			<span className="text-2xl bi bi-cart-fill relative">
-				<span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full ">
-					0
-				</span>
-			</span>
-		</Link>
-		<span className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"></span>
-	</div>
-</div>;
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+export const Search = ({setShowSearch}) => {
+	const navigate = useNavigate();
+	const searchRef = useRef();
+
+
+	const handleSearch = (event) => {
+		event.preventDefault();
+		setShowSearch(false);
+		navigate(`/products?search=${searchRef.current.value}`)
+	}
+
+	return (
+		<div className="mx-auto max-w-screen-xl p-2 my-5">
+			<form className="flex items-center" onSubmit={handleSearch}>
+				<div className="relative w-full">
+					<span className=" flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"><SearchRoundedIcon /></span>
+					<input
+						ref={searchRef}
+						name="search"
+						type="text"
+						id="simple-search"
+						className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+						placeholder="Search"
+						autoComplete="off"
+						required=""
+					/>
+				</div>
+				<button
+					type="submit"
+					className=" py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+				>
+					<SearchRoundedIcon />
+				</button>
+			</form>
+		</div>
+	);
+};
