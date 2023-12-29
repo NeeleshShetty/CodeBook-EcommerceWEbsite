@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { DropdownLoggedIn, DropdownLoggedOut } from "../../components";
 import Logo from "../../assets/logo.png"
 import SettingsIcon from '@mui/icons-material/Settings';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -8,7 +9,8 @@ import { useEffect, useState } from "react";
 import { Search } from "../Sections/Search";
 export const Header = () => {
     const [dark, setDark] = useState(JSON.parse(localStorage.getItem("darkmode")) || false);
-    const [showSearch, setShowSearch] = useState(false);
+	const [showSearch, setShowSearch] = useState(false);
+	const [dropDown, setDropDown] = useState(false);
 
     useEffect(() => {
         localStorage.setItem("darkmode", JSON.stringify(dark));
@@ -60,10 +62,11 @@ export const Header = () => {
 								</span>
 							</span>
 						</Link>
-						<span className=" cursor-pointer text-2xl text-gray-700 dark:text-white">
+						<span onClick={()=> setDropDown(!dropDown)} className=" cursor-pointer text-2xl text-gray-700 dark:text-white">
 							
 							<AccountCircleRoundedIcon />
-						</span>
+					  </span>
+					  {dropDown && <DropdownLoggedIn /> }
 					</div>
 				</div>
 			</nav>
