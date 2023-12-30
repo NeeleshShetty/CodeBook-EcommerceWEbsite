@@ -66,7 +66,7 @@ export const Header = () => {
 							
 							<AccountCircleRoundedIcon />
 					  </span>
-					  {dropDown && <DropdownLoggedIn /> }
+					  {dropDown && <DropdownLoggedOut /> }
 					</div>
 				</div>
 			</nav>

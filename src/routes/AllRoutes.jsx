@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import { HomePage, ProductsList } from "../pages"
+import { HomePage, Login, ProductsList, Register } from "../pages"
 import { ProductDetail } from "../pages"
 
 export const AllRoutes = () => {
@@ -7,8 +7,12 @@ export const AllRoutes = () => {
       <>
           <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/products" element={<ProductsList />} />
-              <Route path="/products/:id" element={<ProductDetail />} />
+              <Route path="products" element={<ProductsList />} />
+              <Route path="products/:id" element={<ProductDetail />} />
+
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+
               
           </Routes>
       </>
