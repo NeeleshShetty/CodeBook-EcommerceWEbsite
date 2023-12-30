@@ -11,6 +11,7 @@ export const Header = () => {
     const [dark, setDark] = useState(JSON.parse(localStorage.getItem("darkmode")) || false);
 	const [showSearch, setShowSearch] = useState(false);
 	const [dropDown, setDropDown] = useState(false);
+	const token = JSON.parse(sessionStorage.getItem("token"))
 
     useEffect(() => {
         localStorage.setItem("darkmode", JSON.stringify(dark));
@@ -66,7 +67,7 @@ export const Header = () => {
 							
 							<AccountCircleRoundedIcon />
 					  </span>
-					  {dropDown && <DropdownLoggedOut /> }
+					  {dropDown && (token ? <DropdownLoggedIn setDropDown={setDropDown} /> : <DropdownLoggedOut setDropDown={setDropDown} />)  }
 					</div>
 				</div>
 			</nav>
