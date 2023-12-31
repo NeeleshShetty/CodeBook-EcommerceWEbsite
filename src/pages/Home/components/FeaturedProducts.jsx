@@ -4,7 +4,8 @@ import { ProductCard } from "../../../components";
 
 export const FeaturedProducts = () => {
 	const [products, setProducts] = useState([]);
-
+	// const { addToCart, removeFromCart } = useCart();
+	
 	useEffect(() => {
 		async function fetchProducts() {
 			const response = await fetch('  http://localhost:8000/featured_products');
