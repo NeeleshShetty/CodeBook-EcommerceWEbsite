@@ -12,7 +12,7 @@ const CartContext = createContext(cartInitialState);
 
 export const CartProvider = ({ children }) => {
 
-    const [state, dispatch] = useReducer(cartReducer, CartContext)
+    const [state, dispatch] = useReducer(cartReducer, cartInitialState)
     
 
     function addToCart(product) {
@@ -29,7 +29,7 @@ export const CartProvider = ({ children }) => {
 
     function removeFromCart(product) {
         const updatedList = state.cartList.filter(item => item.id !== product.id);
-        const updatedTotal = state.total - product.total;
+        const updatedTotal = state.total - product.price;
 
         dispatch({
 					type: 'REMOVE_FROM_CART',
@@ -51,7 +51,7 @@ export const CartProvider = ({ children }) => {
     }
     
     const value = {
-        cartList:state.cartList,
+        cartList: state.cartList,
         total: state.total,
         addToCart,
         removeFromCart,

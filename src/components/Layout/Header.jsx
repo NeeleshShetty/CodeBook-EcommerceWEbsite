@@ -7,12 +7,14 @@ import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useEffect, useState } from "react";
 import { Search } from "../Sections/Search";
+import { CartList } from "../../pages/Cart/components/CartList";
+import { useCart } from "../../context";
 export const Header = () => {
     const [dark, setDark] = useState(JSON.parse(localStorage.getItem("darkmode")) || false);
 	const [showSearch, setShowSearch] = useState(false);
 	const [dropDown, setDropDown] = useState(false);
 	const token = JSON.parse(sessionStorage.getItem("token"))
-
+	const { cartList } = useCart();
     useEffect(() => {
         localStorage.setItem("darkmode", JSON.stringify(dark));
 
@@ -59,7 +61,7 @@ export const Header = () => {
 							<span className="text-2xl  relative">
 								<ShoppingCartRoundedIcon />
 								<span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full ">
-									0
+									{cartList.length}
 								</span>
 							</span>
 						</Link>
