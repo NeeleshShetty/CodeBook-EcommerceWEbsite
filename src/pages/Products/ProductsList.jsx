@@ -5,12 +5,12 @@ import { useFilter } from '../../context';
 import { ProductCard } from '../../components/index';
 import { FilterBar } from './components/FilterBar';
 import { getProductList } from '../../services';
+import { toast } from 'react-toastify';
 
 export const ProductsList = () => {
 	useTitle('Explore E-Book Collections');
 	const { products, initialProductList } = useFilter();
 	const [show, setShow] = useState(false);
-	// const [products, setProducts] = useState([]);
 	const search = useLocation().search;
 	const searchTerm = new URLSearchParams(search).get('search');
 
@@ -19,9 +19,13 @@ export const ProductsList = () => {
 
 	useEffect(() => {
 		async function fetchProducts() {
+			try {
+				const data = await getProductList(searchTerm);
+				initialProductList(data);
+			} catch (error) {
+				toast.error(error.message)
+			}
 			
-			const data = await getProductList(searchTerm);
-			initialProductList(data);
 		}
 		fetchProducts();
 	}, [searchTerm]);
