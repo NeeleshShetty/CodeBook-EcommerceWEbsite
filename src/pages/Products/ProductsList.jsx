@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useFilter } from '../../context';
 import { ProductCard } from '../../components/index';
 import { FilterBar } from './components/FilterBar';
+import { getProductList } from '../../services';
 
 export const ProductsList = () => {
 	useTitle('Explore E-Book Collections');
@@ -18,11 +19,8 @@ export const ProductsList = () => {
 
 	useEffect(() => {
 		async function fetchProducts() {
-			const response = await fetch(
-				`http://localhost:8000/products?name_like=${searchTerm ? searchTerm : ''}`
-			);
-			const data = await response.json();
-			// setProducts(data);
+			
+			const data = await getProductList(searchTerm);
 			initialProductList(data);
 		}
 		fetchProducts();
