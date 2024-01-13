@@ -10,7 +10,7 @@ export async function getUSer() {
 			},
     };
     
-     const response = await fetch(` http://localhost:8000/600/users/${cbid}`, requestOptions);
+     const response = await fetch(` ${process.env.REACT_APP_HOST}/600/users/${cbid}`, requestOptions);
     const data = await response.json();
     return data;
 }
@@ -29,7 +29,7 @@ export async function createOrder(cartList, total, user) {
 				id: user.id,
 			},
 		};
-		const response = await fetch('http://localhost:8000/660/orders', {
+		const response = await fetch(`${process.env.REACT_APP_HOST}/660/orders`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export async function getUserOrders() {
     const cbid = JSON.parse(sessionStorage.getItem('cbid'));
 
     const response = await fetch(
-			`http://localhost:8000/660/orders?user.id=${cbid}`,
+			`${process.env.REACT_APP_HOST}/660/orders?user.id=${cbid}`,
 			{
 				method: 'GET',
 				headers: {

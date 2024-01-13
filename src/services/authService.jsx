@@ -5,7 +5,7 @@ const requestOptions = {
 	body: JSON.stringify(authDetail),
 };
 
-const response = await fetch('http://localhost:8000/login', requestOptions);
+const response = await fetch(`${process.env.REACT_APP_HOST}/login`, requestOptions);
 
 const data = await response.json();
 
@@ -28,7 +28,7 @@ export async function register(authDetail) {
 		};
 
 		const response = await fetch(
-			'http://localhost:8000/register',
+			`${process.env.REACT_APP_HOST}register`,
 			requestOptions
 		);
 
